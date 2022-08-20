@@ -1,0 +1,14 @@
+server:
+  port: ${PORT:0}
+
+spring:
+  application:
+    name: commons-services
+  profiles:
+    active: dev
+  cloud:
+    config:
+      uri: http://localhost:8888
+      name: database
+    discovery:
+      enabled: true
