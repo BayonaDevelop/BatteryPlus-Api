@@ -11,14 +11,14 @@
   </parent>
 
   <groupId>com.bayonasoftware.batteryplus.api</groupId>
-  <artifactId>infrastructure</artifactId>
+  <artifactId>microservices</artifactId>
   <version>1.0.0</version>
   <packaging>pom</packaging>
 
-  <name>Infrastructure</name>
+  <name>Microservices</name>
 
   <modules>
-    <module>server-config</module>
+    <module>utils</module>
   </modules>
 
 
