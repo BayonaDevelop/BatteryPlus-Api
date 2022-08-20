@@ -1,0 +1,19 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: server-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/BayonaDevelop/batteryplus-config.git
+          default-label: master
+          # username: bayona.develop@gmail.com
+          # password: Fbg#57489
+
+# If you use a profile of git in another application
+management:
+  security:
+    enabled:false
