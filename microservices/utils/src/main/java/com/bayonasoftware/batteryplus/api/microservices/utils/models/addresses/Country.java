@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Set;
@@ -20,7 +21,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(schema = "public", name = "country")
+@Table(schema = "public", name = "country", uniqueConstraints = @UniqueConstraint(columnNames = { "name" }))
 @JsonIgnoreProperties("hibernateLazyInitializer")
 public class Country implements Serializable {
 

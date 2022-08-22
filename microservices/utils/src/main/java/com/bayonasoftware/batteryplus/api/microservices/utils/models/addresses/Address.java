@@ -1,5 +1,9 @@
 package com.bayonasoftware.batteryplus.api.microservices.utils.models.addresses;
 
+import com.bayonasoftware.batteryplus.api.microservices.utils.models.catalogs.Client;
+import com.bayonasoftware.batteryplus.api.microservices.utils.models.catalogs.CommercialBranch;
+import com.bayonasoftware.batteryplus.api.microservices.utils.models.catalogs.Person;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,10 +16,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -40,7 +46,6 @@ public class Address implements Serializable {
   private Street streetB;
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", nullable = false)
   private BigInteger id;
 
@@ -52,5 +57,17 @@ public class Address implements Serializable {
 
   @Column(name = "Reference")
   private String reference;
+
+  @JsonIgnore
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
+  private Set<Client> clients;
+
+  @JsonIgnore
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
+  private Set<Person> people;
+
+  @JsonIgnore
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "address")
+  private Set<CommercialBranch> commercialBranches;
 
 }
