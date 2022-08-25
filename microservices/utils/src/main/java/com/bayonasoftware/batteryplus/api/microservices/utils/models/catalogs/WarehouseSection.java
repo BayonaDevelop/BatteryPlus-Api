@@ -1,6 +1,5 @@
 package com.bayonasoftware.batteryplus.api.microservices.utils.models.catalogs;
 
-import com.bayonasoftware.batteryplus.api.microservices.utils.models.addresses.Address;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;

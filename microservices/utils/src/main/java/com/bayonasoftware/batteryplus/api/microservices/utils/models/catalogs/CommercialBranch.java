@@ -1,6 +1,7 @@
 package com.bayonasoftware.batteryplus.api.microservices.utils.models.catalogs;
 
 import com.bayonasoftware.batteryplus.api.microservices.utils.models.addresses.Address;
+import com.bayonasoftware.batteryplus.api.microservices.utils.models.oauth.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,11 +14,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -59,4 +61,10 @@ public class CommercialBranch implements Serializable {
 
   @Column(name = "Longitude", precision = 16, scale = 10)
   private BigDecimal longitude;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "commercialBranch")
+  private Set<User> users;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "commercialBranch")
+  private Set<Warehouse> warehouses;
 }

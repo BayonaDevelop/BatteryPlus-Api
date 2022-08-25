@@ -1,6 +1,7 @@
 package com.bayonasoftware.batteryplus.api.microservices.utils.models.catalogs;
 
 import com.bayonasoftware.batteryplus.api.microservices.utils.models.addresses.Address;
+import com.bayonasoftware.batteryplus.api.microservices.utils.models.oauth.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serial;
 import java.io.Serializable;
@@ -64,4 +66,7 @@ public class Person implements Serializable {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "person")
   private Set<Telephone> telephones;
+
+  @OneToOne(fetch = FetchType.LAZY, mappedBy = "person")
+  private User user;
 }
