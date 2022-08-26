@@ -1,5 +1,7 @@
 package com.bayonasoftware.batteryplus.api.microservices.utils.models.accumulators;
 
+import com.bayonasoftware.batteryplus.api.microservices.utils.models.logs.BciBaseLog;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,6 +31,7 @@ public class BciBase implements Serializable {
   @Serial
   private static final long serialVersionUID = 1L;
 
+  @JsonIgnore
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "group_id")
   private Grouper grouper;
@@ -44,12 +47,19 @@ public class BciBase implements Serializable {
   @Column(name = "active")
   private boolean active;
 
+  @JsonIgnore
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "base")
   private Set<BciUsed> used;
 
+  @JsonIgnore
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "base")
   private Set<BciWarranty> warranties;
 
+  @JsonIgnore
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "base")
   private Set<CoverageBciBase> coverages;
+
+  @JsonIgnore
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "base")
+  private Set<BciBaseLog> logs;
 }

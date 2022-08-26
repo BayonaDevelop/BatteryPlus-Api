@@ -1,5 +1,7 @@
 package com.bayonasoftware.batteryplus.api.microservices.utils.models.accumulators;
 
+import com.bayonasoftware.batteryplus.api.microservices.utils.models.logs.LineLog;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,7 +40,12 @@ public class Line implements Serializable {
   @Column(name = "active")
   private boolean active;
 
+  @JsonIgnore
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "line")
   private Set<BciWarranty> warranties;
+
+  @JsonIgnore
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "line")
+  private Set<LineLog> logs;
 
 }

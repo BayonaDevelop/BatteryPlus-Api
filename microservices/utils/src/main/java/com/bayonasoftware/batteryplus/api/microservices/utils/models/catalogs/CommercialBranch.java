@@ -1,6 +1,7 @@
 package com.bayonasoftware.batteryplus.api.microservices.utils.models.catalogs;
 
 import com.bayonasoftware.batteryplus.api.microservices.utils.models.addresses.Address;
+import com.bayonasoftware.batteryplus.api.microservices.utils.models.logs.CommercialBranchLog;
 import com.bayonasoftware.batteryplus.api.microservices.utils.models.oauth.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -67,4 +68,7 @@ public class CommercialBranch implements Serializable {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "commercialBranch")
   private Set<Warehouse> warehouses;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "commercialBranch")
+  private Set<CommercialBranchLog> logs;
 }

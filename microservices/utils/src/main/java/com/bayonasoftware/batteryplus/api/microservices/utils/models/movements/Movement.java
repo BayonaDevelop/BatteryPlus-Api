@@ -4,6 +4,7 @@ import com.bayonasoftware.batteryplus.api.microservices.utils.models.catalogs.Cl
 import com.bayonasoftware.batteryplus.api.microservices.utils.models.catalogs.Person;
 import com.bayonasoftware.batteryplus.api.microservices.utils.models.catalogs.WarehouseSection;
 import com.bayonasoftware.batteryplus.api.microservices.utils.models.oauth.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;

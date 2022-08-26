@@ -1,6 +1,7 @@
 package com.bayonasoftware.batteryplus.api.microservices.utils.models.catalogs;
 
 import com.bayonasoftware.batteryplus.api.microservices.utils.models.addresses.Address;
+import com.bayonasoftware.batteryplus.api.microservices.utils.models.logs.WarehouseLog;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -56,5 +57,8 @@ public class Warehouse implements Serializable {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "warehouse")
   private Set<WarehouseSection> sections;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "warehouse")
+  private Set<WarehouseLog> logs;
 
 }

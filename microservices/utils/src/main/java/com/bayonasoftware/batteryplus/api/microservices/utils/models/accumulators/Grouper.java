@@ -1,6 +1,9 @@
 package com.bayonasoftware.batteryplus.api.microservices.utils.models.accumulators;
 
 import com.bayonasoftware.batteryplus.api.microservices.utils.models.catalogs.Telephone;
+import com.bayonasoftware.batteryplus.api.microservices.utils.models.logs.CommercialBranchLog;
+import com.bayonasoftware.batteryplus.api.microservices.utils.models.logs.GrouperLog;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -45,7 +48,12 @@ public class Grouper implements Serializable {
   @Column(name = "active")
   private boolean active;
 
+  @JsonIgnore
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "grouper")
   private Set<BciBase>  bciBases;
+
+  @JsonIgnore
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "grouper")
+  private Set<GrouperLog> logs;
 
 }

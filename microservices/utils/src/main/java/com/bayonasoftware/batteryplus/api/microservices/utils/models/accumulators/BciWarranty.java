@@ -1,5 +1,6 @@
 package com.bayonasoftware.batteryplus.api.microservices.utils.models.accumulators;
 
+import com.bayonasoftware.batteryplus.api.microservices.utils.models.logs.BciWarrantyLog;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -56,4 +57,7 @@ public class BciWarranty implements Serializable {
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "warranty")
   private Set<Accumulator> accumulators;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "warranty")
+  private Set<BciWarrantyLog> logs;
 }

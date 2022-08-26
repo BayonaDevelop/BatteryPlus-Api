@@ -62,9 +62,11 @@ public class User implements Serializable {
       @JoinColumn(name = "role_id", nullable = false, updatable = false) })
   private Set<Role> roles;
 
+  @JsonIgnore
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
   private Set<Movement> movements;
 
+  @JsonIgnore
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "userPublicAttention")
   private Set<Movement> movementsAttended;
 

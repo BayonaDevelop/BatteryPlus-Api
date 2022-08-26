@@ -1,6 +1,8 @@
 package com.bayonasoftware.batteryplus.api.microservices.utils.models.accumulators;
 
+import com.bayonasoftware.batteryplus.api.microservices.utils.models.logs.AccumulatorLog;
 import com.bayonasoftware.batteryplus.api.microservices.utils.models.movements.MovementDetail;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,10 +34,12 @@ public class Accumulator implements Serializable {
   @Serial
   private static final long serialVersionUID = 1L;
 
+  @JsonIgnore
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "bci_used_id")
   private BciUsed used;
 
+  @JsonIgnore
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "bci_warranty_id")
   private BciWarranty warranty;
@@ -86,7 +90,12 @@ public class Accumulator implements Serializable {
   @Column(name = "sale_date", length = 23)
   private Date saleDate;
 
+  @JsonIgnore
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "accumulator")
   private Set<MovementDetail> details;
+
+  @JsonIgnore
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "accumulator")
+  private Set<AccumulatorLog> logs;
 
 }

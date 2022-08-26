@@ -1,6 +1,7 @@
 package com.bayonasoftware.batteryplus.api.microservices.utils.models.movements;
 
 import com.bayonasoftware.batteryplus.api.microservices.utils.models.accumulators.Accumulator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,10 +28,12 @@ public class MovementDetail implements Serializable {
   @Serial
   private static final long serialVersionUID = 1L;
 
+  @JsonIgnore
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "movement_id")
   private Movement movement;
 
+  @JsonIgnore
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "accumulator_id")
   private Accumulator accumulator;

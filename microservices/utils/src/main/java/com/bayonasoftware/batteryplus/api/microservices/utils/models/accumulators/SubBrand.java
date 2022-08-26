@@ -1,5 +1,6 @@
 package com.bayonasoftware.batteryplus.api.microservices.utils.models.accumulators;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +28,7 @@ public class SubBrand implements Serializable {
   @Serial
   private static final long serialVersionUID = 1L;
 
+  @JsonIgnore
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "brand_id")
   private Brand brand;
@@ -48,9 +50,11 @@ public class SubBrand implements Serializable {
   @Column(name = "active")
   private boolean active;
 
+  @JsonIgnore
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "subBrand")
   private Set<BciWarranty> bciWarranties;
 
+  @JsonIgnore
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "subbrand")
   private Set<CoverageSubBrand> coverages;
 

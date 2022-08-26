@@ -1,6 +1,7 @@
 package com.bayonasoftware.batteryplus.api.microservices.utils.models.catalogs;
 
 import com.bayonasoftware.batteryplus.api.microservices.utils.models.addresses.Address;
+import com.bayonasoftware.batteryplus.api.microservices.utils.models.logs.ClientLog;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,9 +14,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -65,4 +68,7 @@ public class Client implements Serializable {
 
   @Column(name = "active", nullable = false)
   private boolean active;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+  private Set<ClientLog> logs;
 }
