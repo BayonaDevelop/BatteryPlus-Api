@@ -1,5 +1,6 @@
 package com.bayonasoftware.batteryplus.api.microservices.utils.models.catalogs;
 
+import com.bayonasoftware.batteryplus.api.microservices.utils.models.movements.Movement;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,10 +11,12 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -35,4 +38,10 @@ public class WarehouseSection implements Serializable {
 
   @Column(name = "name", nullable = false)
   private String name;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "origin")
+  private Set<Movement> movements;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "destination")
+  private Set<Movement> translates;
 }

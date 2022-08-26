@@ -1,5 +1,6 @@
 package com.bayonasoftware.batteryplus.api.microservices.utils.models.accumulators;
 
+import com.bayonasoftware.batteryplus.api.microservices.utils.models.movements.MovementDetail;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,6 +21,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -82,4 +85,8 @@ public class Accumulator implements Serializable {
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "sale_date", length = 23)
   private Date saleDate;
+
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "accumulator")
+  private Set<MovementDetail> details;
+
 }
